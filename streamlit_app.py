@@ -27,7 +27,7 @@ default = 'ouvir música\nconversar\ncomer\nbeber'
 activities = st.text_area('O que as pessoas vão fazer nesse lugar?', default)
 activities = activities.split('\n')
 
-num_people = st.number_input('Número de pessoas', 8)
+num_people = st.number_input('Número de pessoas', min_value=0, max_value=12, value=8)
 
 female_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-fem-10000.csv', nrows=MAX_NAMES)
 male_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-mas-10000.csv', nrows=MAX_NAMES)
@@ -42,6 +42,6 @@ for activity in activities:
 df = df.sort_values(by=activities, ascending=False)
 df = df.set_index('nome')
 
-fig, ax = plt.subplots()
+fig = plt.figure()
 sns.heatmap(df, annot=True, cbar=False, cmap='RdYlGn', ax=ax);
 st.pyplot(fig)
