@@ -25,7 +25,7 @@ default = 'ouvir música\nconversar\ncomer\nbeber'
 activities = st.sidebar.text_area('O que as pessoas vão fazer nesse lugar?', default)
 activities = activities.split('\n')
 
-num_people = st.sidebar.number_input('Número de pessoas', min_value=0, max_value=12, value=8, step=2)
+num_people = st.sidebar.number_input('Número de pessoas', min_value=0, max_value=12, value=4, step=2)
 
 st.title(place)
 
