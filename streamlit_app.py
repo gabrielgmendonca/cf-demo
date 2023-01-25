@@ -44,6 +44,6 @@ df = df.set_index('nome')
 
 fig = plt.figure()
 ax = sns.heatmap(df, annot=True, cbar=False, cmap='RdYlGn')
-ax.set_ylabel('')
+ax.set_ylabel('', rotation=90)
 ax.xaxis.tick_top()
 st.pyplot(fig)
