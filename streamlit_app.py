@@ -24,7 +24,7 @@ place = st.selectbox('De qual ambiente estamos falando?', PLACES)
 st.title(place)
 
 default = 'ouvir música\nconversar\ncomer\nbeber'
-activities = st.text_area(f'O que as pessoas vão fazer em um(a) {place.lower())}?', default)
+activities = st.text_area(f'O que as pessoas vão fazer em um(a) {place.lower()}?', default)
 activities = activities.split('\n')
 
 num_people = st.number_input('Número de pessoas', 8)
