@@ -43,5 +43,5 @@ df = df.sort_values(by=activities, ascending=False)
 df = df.set_index('nome')
 
 fig = plt.figure()
-sns.heatmap(df, annot=True, cbar=False, cmap='RdYlGn', ax=ax);
+sns.heatmap(df, annot=True, cbar=False, cmap='RdYlGn')
 st.pyplot(fig)
