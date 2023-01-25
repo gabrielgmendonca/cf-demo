@@ -19,12 +19,12 @@ PLACES = [
     'Escola 📚',
 ]
 
-place = st.selectbox('De qual ambiente estamos falando?', PLACES)
-
 st.title(place)
 
+place = st.selectbox('De qual ambiente estamos falando?', PLACES)
+
 default = 'ouvir música\nconversar\ncomer\nbeber'
-activities = st.text_area(f'O que as pessoas vão fazer em um(a) {place.lower()}?', default)
+activities = st.text_area('O que as pessoas vão fazer nesse lugar?', default)
 activities = activities.split('\n')
 
 num_people = st.number_input('Número de pessoas', 8)
@@ -44,4 +44,4 @@ df = df.set_index('nome')
 
 fig, ax = plt.subplots()
 sns.heatmap(df, annot=True, cbar=False, cmap='RdYlGn', ax=ax);
-st.pyplot(ax)
+st.pyplot(fig)
