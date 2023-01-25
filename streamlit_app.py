@@ -5,12 +5,27 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 MAX_NAMES = 100
+PLACES = [
+    'Restaurante',
+    'Boate',
+    'Centro espírita',
+    'Shopping',
+    'Academia',
+    'Estádio de futebol',
+    'Igreja',
+    'Praia',
+    'Faculdade',
+    'Parque',
+    'Escola',
+]
+
+place = st.selectbox('De qual ambiente estamos falando?', PLACES)
+
+default = 'ouvir música\nconversar\ncomer\nbeber'
+activities = st.text_area(f'O que as pessoas vão fazer em um(a) {place.lower())}?', default)
+activities = activities.split('\n')
 
 num_people = st.number_input('Número de pessoas', 8)
-
-default = 'ouvir música\nconversar\ncomer'
-activities = st.text_area('O que as pessoas vão fazer nesse lugar?', default)
-activities = activities.split('\n')
 
 female_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-fem-10000.csv', nrows=MAX_NAMES)
 male_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-mas-10000.csv', nrows=MAX_NAMES)
@@ -21,7 +36,7 @@ people = pd.concat((women, men)).sample(frac=1)
 
 df = pd.DataFrame(people)
 for activity in activities:
-    df[activity] = np.random.randint(2, size=NUM_PEOPLE)
+    df[activity] = np.random.randint(2, size=num_people)
 df = df.sort_values(by=activities, ascending=False)
 df = df.set_index('nome')
 
