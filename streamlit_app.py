@@ -19,6 +19,7 @@ PLACES = [
     'Escola 📚',
 ]
 
+place = PLACES[0]
 st.title(place)
 
 place = st.selectbox('De qual ambiente estamos falando?', PLACES)
