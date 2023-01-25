@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 num_people = st.number_input('Número de pessoas', 8)
 
@@ -21,5 +22,6 @@ for activity in activities:
 df = df.sort_values(by=activities, ascending=False)
 df = df.set_index('nome')
 
-ax = sns.heatmap(df, annot=True, cbar=False, cmap='RdYlGn');
+fig, ax = plt.subplots()
+sns.heatmap(df, annot=True, cbar=False, cmap='RdYlGn', ax=ax);
 st.pyplot(ax)
