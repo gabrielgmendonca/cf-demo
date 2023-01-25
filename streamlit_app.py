@@ -6,20 +6,22 @@ import matplotlib.pyplot as plt
 
 MAX_NAMES = 100
 PLACES = [
-    'Restaurante',
-    'Boate',
-    'Centro espírita',
-    'Shopping',
-    'Academia',
-    'Estádio de futebol',
-    'Igreja',
-    'Praia',
-    'Faculdade',
-    'Parque',
-    'Escola',
+    'Restaurante 🍝',
+    'Boate 🪩',
+    'Centro espírita 🙏',
+    'Shopping 🛒',
+    'Academia 💪',
+    'Estádio de futebol ⚽',
+    'Igreja 🕇',
+    'Praia 🏖️',
+    'Faculdade 🎓',
+    'Parque 🌳',
+    'Escola 📚',
 ]
 
 place = st.selectbox('De qual ambiente estamos falando?', PLACES)
+
+st.title(place)
 
 default = 'ouvir música\nconversar\ncomer\nbeber'
 activities = st.text_area(f'O que as pessoas vão fazer em um(a) {place.lower())}?', default)
