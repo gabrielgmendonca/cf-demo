@@ -19,9 +19,6 @@ PLACES = [
     'Escola 📚',
 ]
 
-place = PLACES[0]
-st.title(place)
-
 place = st.sidebar.selectbox('De qual ambiente estamos falando?', PLACES)
 
 default = 'ouvir música\nconversar\ncomer\nbeber'
@@ -29,6 +26,8 @@ activities = st.sidebar.text_area('O que as pessoas vão fazer nesse lugar?', de
 activities = activities.split('\n')
 
 num_people = st.sidebar.number_input('Número de pessoas', min_value=0, max_value=12, value=8)
+
+st.title(place)
 
 female_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-fem-10000.csv', nrows=MAX_NAMES)
 male_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-mas-10000.csv', nrows=MAX_NAMES)
