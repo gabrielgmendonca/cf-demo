@@ -3,14 +3,16 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+MAX_NAMES = 100
+
 num_people = st.number_input('Número de pessoas', 8)
 
 default = 'ouvir música\nconversar\ncomer'
 activities = st.text_area('O que as pessoas vão fazer nesse lugar?', default)
 activities = activities.split('\n')
 
-female_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-fem-10000.csv')
-male_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-mas-10000.csv')
+female_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-fem-10000.csv', nrows=MAX_NAMES)
+male_names = pd.read_csv('https://raw.githubusercontent.com/MedidaSP/nomes-brasileiros-ibge/master/ibge-mas-10000.csv', nrows=MAX_NAMES)
 
 women = female_names.sample(num_people // 2, weights='freq')['nome']
 men = male_names.sample(num_people // 2, weights='freq')['nome']
