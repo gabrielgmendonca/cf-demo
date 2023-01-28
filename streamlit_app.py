@@ -39,7 +39,7 @@ people = pd.concat((women, men)).sample(frac=1)
 df = pd.DataFrame(people)
 COEF = 0.75 / len(activities)
 for i, activity in enumerate(activities):
-    df[activity] = np.random.binomial(1, 0.8 - i * COEF, size=NUM_PEOPLE)
+    df[activity] = np.random.binomial(1, 0.8 - i * COEF, size=num_people)
     df = df.sort_values(by=activities, ascending=False)
 df = df.set_index('nome')
 
@@ -48,3 +48,5 @@ ax = sns.heatmap(df, annot=True, cbar=False, cmap='coolwarm_r')
 ax.set_ylabel('', rotation=90)
 ax.xaxis.tick_top()
 st.pyplot(fig)
+
+
