@@ -37,13 +37,14 @@ men = male_names.sample(num_people // 2, weights='freq')['nome']
 people = pd.concat((women, men)).sample(frac=1)
 
 df = pd.DataFrame(people)
-for activity in activities:
-    df[activity] = np.random.randint(2, size=num_people)
-df = df.sort_values(by=activities, ascending=False)
+COEF = 0.75 / len(activities)
+for i, activity in enumerate(activities):
+    df[activity] = np.random.binomial(1, 0.8 - i * COEF, size=NUM_PEOPLE)
+    df = df.sort_values(by=activities, ascending=False)
 df = df.set_index('nome')
 
 fig = plt.figure()
-ax = sns.heatmap(df, annot=True, cbar=False, cmap='RdYlGn')
+ax = sns.heatmap(df, annot=True, cbar=False, cmap='coolwarm_r')
 ax.set_ylabel('', rotation=90)
 ax.xaxis.tick_top()
 st.pyplot(fig)
