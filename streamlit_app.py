@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.metrics.pairwise import cosine_similarity
 
 MAX_NAMES = 100
 PLACES = [
@@ -49,4 +50,11 @@ ax.set_ylabel('', rotation=90)
 ax.xaxis.tick_top()
 st.pyplot(fig)
 
-
+button = st.button('Recomendar')
+if button:
+    sim = cosine_similarity(df)
+    np.fill_diagonal(sim, 0)
+    sim = pd.DataFrame(sim, index=df.index, columns=df.index)
+    sim = sim.div(sim.sum(axis=0), axis=1)
+    recommended = (df + sim.dot(df)).clip(upper=1)
+    ax = sns.heatmap(recommended, annot=True, cbar=False, cmap='coolwarm_r')
