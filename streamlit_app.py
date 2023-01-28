@@ -51,10 +51,11 @@ sim = sim.div(sim.sum(axis=0), axis=1)
 recommended = (df + sim.dot(df)).clip(upper=1)
 
 tab1, tab2 = st.tabs(['Original', 'Recomendado'])
+cmap = sns.color_palette('rocket', as_cmap=True)
 with tab1:
     st.header('Interesse original')
     fig = plt.figure()
-    ax = sns.heatmap(df, annot=True, cbar=False, cmap='coolwarm_r')
+    ax = sns.heatmap(df * 100, annot=True, cbar=False, cmap=cmap)
     ax.set_ylabel('', rotation=90)
     ax.xaxis.tick_top()
     st.pyplot(fig)
@@ -62,7 +63,7 @@ with tab1:
 with tab2:
     st.header('Interesse _recomendado_')
     fig = plt.figure()
-    ax = sns.heatmap(recommended, annot=True, cbar=False, cmap='coolwarm_r')
+    ax = sns.heatmap(recommended * 100, annot=True, cbar=False, cmap=cmap)
     ax.set_ylabel('', rotation=90)
     ax.xaxis.tick_top()
     st.pyplot(fig)
