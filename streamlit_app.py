@@ -50,13 +50,15 @@ sim = pd.DataFrame(sim, index=df.index, columns=df.index)
 sim = sim.div(sim.sum(axis=0), axis=1)
 recommended = (df + sim.dot(df)).clip(upper=1)
 
-button = st.button('Recomendar')
+button = False
 
 fig = plt.figure()
 if not button:
     ax = sns.heatmap(df, annot=True, cbar=False, cmap='coolwarm_r')
 else:
     ax = sns.heatmap(recommended, annot=True, cbar=False, cmap='coolwarm_r')
+
+button = st.checkbox('Recomendado')
 
 ax.set_ylabel('', rotation=90)
 ax.xaxis.tick_top()
