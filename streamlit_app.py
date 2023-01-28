@@ -51,7 +51,7 @@ sim = sim.div(sim.sum(axis=0), axis=1)
 recommended = (df + sim.dot(df)).clip(upper=1)
 
 tab1, tab2 = st.tabs(['Original', 'Recomendado'])
-cmap = sns.color_palette('rocket', as_cmap=True)
+cmap = sns.color_palette('mako', as_cmap=True)
 with tab1:
     st.header('Interesse original')
     fig = plt.figure()
