@@ -50,16 +50,19 @@ sim = pd.DataFrame(sim, index=df.index, columns=df.index)
 sim = sim.div(sim.sum(axis=0), axis=1)
 recommended = (df + sim.dot(df)).clip(upper=1)
 
-button = False
-
-fig = plt.figure()
-if not button:
+tab1, tab2 = st.tabs(['Interesse original', 'Interesse _recomendado_'])
+with tab1:
+    st.header('Interesse orignal')
+    fig = plt.figure()
     ax = sns.heatmap(df, annot=True, cbar=False, cmap='coolwarm_r')
-else:
+    ax.set_ylabel('', rotation=90)
+    ax.xaxis.tick_top()
+    st.pyplot(fig)
+
+with tab2:
+    st.header('Interesse _recomendado_')
+    fig = plt.figure()
     ax = sns.heatmap(recommended, annot=True, cbar=False, cmap='coolwarm_r')
-
-button = st.checkbox('Recomendado')
-
-ax.set_ylabel('', rotation=90)
-ax.xaxis.tick_top()
-st.pyplot(fig)
+    ax.set_ylabel('', rotation=90)
+    ax.xaxis.tick_top()
+    st.pyplot(fig)
