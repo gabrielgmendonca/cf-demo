@@ -8,7 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 MAX_NAMES = 100
 PLACES = [
     'Restaurante 🍝',
-    'Boate 🪩',
+    'Boate 🕺',
     'Centro espírita 🙏',
     'Shopping 🛒',
     'Academia 💪',
