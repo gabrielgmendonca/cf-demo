@@ -44,17 +44,20 @@ for i, activity in enumerate(activities):
 df = df.sort_values(by=activities, ascending=False)
 df = df.set_index('nome')
 
+sim = cosine_similarity(df)
+np.fill_diagonal(sim, 0)
+sim = pd.DataFrame(sim, index=df.index, columns=df.index)
+sim = sim.div(sim.sum(axis=0), axis=1)
+recommended = (df + sim.dot(df)).clip(upper=1)
+
+button = st.button('Recomendar')
+
 fig = plt.figure()
-ax = sns.heatmap(df, annot=True, cbar=False, cmap='coolwarm_r')
+if not button:
+    ax = sns.heatmap(df, annot=True, cbar=False, cmap='coolwarm_r')
+else:
+    ax = sns.heatmap(recommended, annot=True, cbar=False, cmap='coolwarm_r')
+
 ax.set_ylabel('', rotation=90)
 ax.xaxis.tick_top()
 st.pyplot(fig)
-
-button = st.button('Recomendar')
-if button:
-    sim = cosine_similarity(df)
-    np.fill_diagonal(sim, 0)
-    sim = pd.DataFrame(sim, index=df.index, columns=df.index)
-    sim = sim.div(sim.sum(axis=0), axis=1)
-    recommended = (df + sim.dot(df)).clip(upper=1)
-    ax = sns.heatmap(recommended, annot=True, cbar=False, cmap='coolwarm_r')
