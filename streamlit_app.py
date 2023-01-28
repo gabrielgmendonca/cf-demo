@@ -41,7 +41,7 @@ df = pd.DataFrame(people)
 COEF = 0.75 / len(activities)
 for i, activity in enumerate(activities):
     df[activity] = np.random.binomial(1, 0.8 - i * COEF, size=num_people)
-    df = df.sort_values(by=activities, ascending=False)
+df = df.sort_values(by=activities, ascending=False)
 df = df.set_index('nome')
 
 fig = plt.figure()
