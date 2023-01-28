@@ -50,9 +50,9 @@ sim = pd.DataFrame(sim, index=df.index, columns=df.index)
 sim = sim.div(sim.sum(axis=0), axis=1)
 recommended = (df + sim.dot(df)).clip(upper=1)
 
-tab1, tab2 = st.tabs(['Interesse original', 'Interesse _recomendado_'])
+tab1, tab2 = st.tabs(['Original', 'Recomendado'])
 with tab1:
-    st.header('Interesse orignal')
+    st.header('Interesse original')
     fig = plt.figure()
     ax = sns.heatmap(df, annot=True, cbar=False, cmap='coolwarm_r')
     ax.set_ylabel('', rotation=90)
